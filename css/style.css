@@ -1,0 +1,267 @@
+* {
+  box-sizing: border-box;
+}
+
+.row::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+[class*="col-"] {
+  float: left;
+  padding: 1px 2px;
+}
+
+html {
+  font-family: "Lucida Sans", sans-serif;
+  font-size: 100%;
+  background-color: rgba(240,240,240);
+}
+
+p {
+  padding: 5px 5px;
+  margin: 0;
+}
+.header {
+  background-color: #000000;
+  color: #ffffff;
+  padding: 5px 10px;
+  margin: 1px;
+}
+
+video {
+  width: 100%;
+  height: auto;
+  margin: 0;
+}
+
+audio {
+  display: block;
+  width: 100%;
+  margin-top: 0.2rem;
+}
+
+#my-peak-meter {
+	height: 2em;
+}
+
+#dot {
+  height: 10px;
+  width: 10px;
+  border-radius: 50%;
+}
+
+#logo, #help {
+	font-size: 120%;
+	margin: 5px;
+}
+
+#control {
+  margin: 0 1px;
+}
+
+#formats {
+  margin: 0 5px;
+  font-size: 80%;
+}
+
+#volume {
+  margin: 0 5px;
+  font-size: 90%;
+}
+
+[type="file"] {
+  border: 0;
+  clip: rect(0, 0, 0, 0);
+  height: 1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute !important;
+  white-space: nowrap;
+  width: 1px;
+}
+
+[type="file"] {
+  background-color: #008CBA;
+  color: #fff;
+  cursor: pointer;
+  display: inline-block;
+  text-align: center;
+}
+
+button, label {
+  flex-grow: 1;
+  height: 2rem;
+  min-width: 1.5rem;
+  border: none;
+  border-radius: 0.15rem;
+  background: #008CBA;
+  margin-left: 1px;
+  box-shadow: inset 0 -0.15rem 0 rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color:#ffffff;
+  font-weight: bold;
+  font-size: 1rem;
+  margin-top: 1px;
+  padding: 0 0.5rem;
+}
+button:hover, button:focus {
+  outline: none;
+}
+button::-moz-focus-inner {
+  border: 0;
+}
+button:active, label:active {
+  box-shadow: inset 0 1px 0 rgba(0, 0, 0, 0.2);
+  line-height: 2rem;
+}
+button:disabled {
+  pointer-events: none;
+  background: lightgray;
+}
+button:first-child, label:first-child {
+  margin-left: 0;
+}
+
+label {
+  width: 3.5em;
+  margin-right: 2px;
+}
+
+#recordingsList {
+	height: 100%;
+	overflow: auto;
+	
+}
+
+#recordButton{
+	background: #ed341d;
+}
+
+@media only screen and (orientation: portrait) {
+	[class*="col-"] {
+	width: 100%;
+}
+}
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+#recordings {height: 200px;}
+}
+
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (min-height: 550px) {
+#logo, #help {
+	font-size: 140%;
+}
+#my-peak-meter {height: 2.5em;}
+#recordings {height: 250px;}
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+  #logo, #help {
+	  font-size: 140%;
+}
+  #my-peak-meter {height: 2.5em;}
+  #recordings {height: 300px;}
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+  #my-peak-meter {height: 3em;}
+  #logo, #help {
+	  font-size: 180%;
+}
+  #recordings {height:380px;}
+  [class*="col-"] {padding: 2px 4px;}
+} 
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+	#recordings {height: 600px;}
+} 
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+	#recordings {height: 700px;}
+}
+
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) and (orientation: landscape) {
+  .col-xs-1 {width: 8.33%;}
+  .col-xs-2 {width: 16.66%;}
+  .col-xs-3 {width: 25%;}
+  .col-xs-4 {width: 33.33%;}
+  .col-xs-5 {width: 41.66%;}
+  .col-xs-6 {width: 50%;}
+  .col-xs-7 {width: 58.33%;}
+  .col-xs-8 {width: 66.66%;}
+  .col-xs-9 {width: 75%;}
+  .col-xs-10 {width: 83.33%;}
+  .col-xs-11 {width: 91.66%;}
+  .col-xs-12 {width: 100%;}
+  #recordings {height: 210px;}
+} 
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+/*@media only screen and (min-width: 600px) {...}
+
+/* Medium devices (landscape tablets, 768px and up) */
+/*@media only screen and (min-width: 768px) {...} 
+
+/* Large devices (laptops/desktops, 992px and up) */
+/*@media only screen and (min-width: 992px) {...} 
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+/*@media only screen and (min-width: 1200px) {...}*/
+
+
+@media only screen and (min-width: 600px) and (orientation: landscape) {
+  /* For tablets: */
+  .col-s-1 {width: 8.33%;}
+  .col-s-2 {width: 16.66%;}
+  .col-s-3 {width: 25%;}
+  .col-s-4 {width: 33.33%;}
+  .col-s-5 {width: 41.66%;}
+  .col-s-6 {width: 50%;}
+  .col-s-7 {width: 58.33%;}
+  .col-s-8 {width: 66.66%;}
+  .col-s-9 {width: 75%;}
+  .col-s-10 {width: 83.33%;}
+  .col-s-11 {width: 91.66%;}
+  .col-s-12 {width: 100%;}
+  #my-peak-meter {height: 2.5em;}
+  #logo, #help {
+	  font-size: 140%;
+}
+  #recordings {height: 240px;}
+}
+
+@media only screen and (min-width: 768px) and (orientation: landscape) {
+  /* For desktop: */
+  .col-1 {width: 8.33%;}
+  .col-2 {width: 16.66%;}
+  .col-3 {width: 25%;}
+  .col-4 {width: 33.33%;}
+  .col-5 {width: 41.66%;}
+  .col-6 {width: 50%;}
+  .col-7 {width: 58.33%;}
+  .col-8 {width: 66.66%;}
+  .col-9 {width: 75%;}
+  .col-10 {width: 83.33%;}
+  .col-11 {width: 91.66%;}
+  .col-12 {width: 100%;}
+  #my-peak-meter {height: 3em;}
+  #logo, #help {
+	  font-size: 180%;
+}
+  #recordings {height: 600px;}
+  [class*="col-"] {padding: 2px 4px;}
+}
