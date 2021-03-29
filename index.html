@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+
+	<title>ARV</title>
+	<meta name="description" content="This App records allows you record through the device microphone while watching a reference video.">
+	<meta name="author" content="Project Developers">
+	<meta name="theme-color" content="#B12A34">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta property="og:image" content="icons/icon-512.png">
+	<link rel="apple-touch-icon" href="icons/icon-152.png">
+	<link rel="shortcut icon" href="favicon.ico">
+	<link rel="manifest" href="rec.webmanifest">
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+	
+	
+</head>
+<body>
+<header>
+	<div class="header" style="display: flex; flex: nowrap;">
+  		<div style="width: 40%;">
+			<div id="logo"><large><strong>Sync<span style="color: red;">Rec</span></strong></large></div>
+		</div>
+  		<div style="width: 50%;">
+			<div id="my-peak-meter" style="width: 95%;"></div>
+		</div>
+		<div style="margin: auto;">
+			<div id="dot" style="margin: auto;"></div>
+		</div>
+		<div id="help" style="width: 5%; color: white; margin: auto; text-align: right; vertical-align: middle;"><strong>?</strong></div>
+	</div>
+</header>
+<div class="row">
+	<div class="col-8 col-s-7 col-xs-7">
+	  <video id="movie"></video>
+	<div class="row">
+  		<div class="col-8 col-s-12 col-xs-12">
+			<div id="control" style="display: flex; flex: nowrap;">
+				<input type="file" id="video-upload">
+				<label for="video-upload">Load</label>
+				<button id="unload">Unload</button>
+				<button id="recordButton">Record</button>
+				<button id="pauseButton" style="display: none;">Pause</button>
+				<button id="stopButton" style="display: none;">Stop</button>
+				<button id="monitorButton">Monitor</button>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+  		<div class="col-8 col-s-12 col-xs-12">
+			<div id="formats">Format: start recording to see sample rate</div>
+		</div>
+	</div>
+	<div class="row" id="volume" style="display: flex; flex: nowrap;">
+		<div>Mic Gain: <span id="gainValue"></span></div>
+		<input type="range" min="0" max="100" value="90" class="slider" id="gain">
+		<!--div>
+		<span>Reset <span><input type="radio" id="reset"></span>
+		</div-->
+	</div>
+  </div>
+  <div class="col-4 col-s-5 col-xs-5">
+	  <div class="row" style="display: flex; flex: nowrap;">
+		  <div style="width: 50%;">
+			  <p><strong>Recordings</strong></p>
+		  </div>
+		  <div style="width: 50%;">
+			  <div style="position: absolute; right: 10px;"><p id="clearAll" style="color: blue; margin: auto; text-decoration: underline;"></p></div>
+		  </div>
+	  </div>
+	  <div id="recordings" class="row">
+		  <div id="recordingsList"></div>
+	  </div>
+  </div>
+</div>
+	<!-- inserting these scripts at the end to be able to use all the elements in the DOM -->
+	<script src="js/web-audio-peak-meter-2.0.0.min.js"></script>
+	<script src="js/recorder.js"></script>
+	<script src="js/app.js"></script>
+
+</body>
+</html>
