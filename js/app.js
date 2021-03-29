@@ -195,11 +195,15 @@ gumStream = stream;
 			
 	}else{
 	
-	recordButton.style.display = "block";
+	
+	
 	monitorButton.innerHTML="Monitor";
+	
 	gumStream.getAudioTracks()[0].stop();
+	//recordButton.style.display = "block";
 
 	myMeterElement.innerHTML = '';
+	recordButton.style.display = "block";
 	}
 	
 }
