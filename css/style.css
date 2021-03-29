@@ -10,7 +10,7 @@
 
 [class*="col-"] {
   float: left;
-  padding: 1px 2px;
+  padding: 0.5px 2px;
 }
 
 html {
@@ -63,12 +63,12 @@ audio {
 
 #formats {
   margin: 0 5px;
-  font-size: 80%;
+  font-size: 75%;
 }
 
 #volume {
   margin: 0 5px;
-  font-size: 90%;
+  font-size: 80%;
 }
 
 [type="file"] {
@@ -92,22 +92,22 @@ audio {
 
 button, label {
   flex-grow: 1;
-  height: 2rem;
-  min-width: 1.5rem;
+  height: 1.5rem;
+  min-width: 1.2rem;
   border: none;
   border-radius: 0.15rem;
   background: #008CBA;
-  margin-left: 1px;
-  box-shadow: inset 0 -0.15rem 0 rgba(0, 0, 0, 0.2);
+  margin-left: 0.2px;
+  box-shadow: inset 0 -0.1rem 0 rgba(0, 0, 0, 0.2);
   cursor: pointer;
   display: flex;
   justify-content: center;
   align-items: center;
   color:#ffffff;
   font-weight: bold;
-  font-size: 1rem;
-  margin-top: 1px;
-  padding: 0 0.5rem;
+  font-size: 0.8rem;
+  margin-top: 0;
+  padding: 0 0.2rem;
 }
 button:hover, button:focus {
   outline: none;
@@ -117,7 +117,7 @@ button::-moz-focus-inner {
 }
 button:active, label:active {
   box-shadow: inset 0 1px 0 rgba(0, 0, 0, 0.2);
-  line-height: 2rem;
+  line-height: 1rem;
 }
 button:disabled {
   pointer-events: none;
@@ -129,7 +129,7 @@ button:first-child, label:first-child {
 
 label {
   width: 3.5em;
-  margin-right: 2px;
+  margin-right: 1.8px;
 }
 
 #recordingsList {
@@ -180,6 +180,21 @@ label {
 }
   #recordings {height:380px;}
   [class*="col-"] {padding: 2px 4px;}
+  #formats {font-size: 80%;}
+  #volume {font-size: 90%;}
+  button, label {
+  height: 2rem;
+  min-width: 1.5rem;
+  margin-left: 1px;
+  box-shadow: inset 0 -0.15rem 0 rgba(0, 0, 0, 0.2);
+  font-size: 1rem;
+  margin-top: 1px;
+  padding: 0 0.5rem;
+}
+  button:active, label:active {
+line-height: 2rem;
+}
+label {margin-right: 2px;}
 } 
 
 /* Large devices (laptops/desktops, 992px and up) */
