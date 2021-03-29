@@ -52,7 +52,6 @@ var player = document.getElementById('movie');
 player.removeAttribute('src'); // empty source
 player.load();
 document.getElementById('video-upload').value="";
-player.play();
 };
 
 function play(){
