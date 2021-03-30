@@ -12,6 +12,8 @@ const appShellFiles = [
   '/syncrec/favicon.ico',
   '/syncrec/icons/icon-152.png',
   '/syncrec/icons/icon-512.png',
+  '/syncrec/screenshot1.webp',
+  '/syncrec/screenshot2.webp',
 ];
 
 const contentToCache = appShellFiles;
