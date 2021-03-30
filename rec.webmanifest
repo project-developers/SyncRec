@@ -1,7 +1,7 @@
 {
-    "name": "Audio Recorder with Video",
-    "short_name": "ARV",
-    "description": "This App records allows you record through the device microphone while watching a reference video.",
+    "name": "Synchronized Audio Recorder",
+    "short_name": "Sync Rec",
+    "description": "This App records allows you record through the device microphone while watching a video.",
     "icons": [
         {
             "src": "icons/icon-152.png",
@@ -26,7 +26,7 @@
     "type": "image/webp"
   }
 ],
-    "start_url": "/rec/index.html",
+    "start_url": "/syncrec/index.html",
     "display": "fullscreen",
     "orientation": "natural",
     "theme_color": "#B12A34",
