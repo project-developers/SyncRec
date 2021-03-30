@@ -28,6 +28,7 @@
 ],
     "start_url": "/rec/index.html",
     "display": "fullscreen",
+    "orientation": "natural",
     "theme_color": "#B12A34",
     "background_color": "#B12A34"
 }
