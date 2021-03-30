@@ -1,17 +1,17 @@
 
 
 // Files to cache
-const cacheName = 'ARV-v1';
+const cacheName = 'SyncRec-v1';
 const appShellFiles = [
-  '/rec/',
-  '/rec/index.html',
-  '/rec/js/app.js',
-  '/rec/js/recorder.js',
-  '/rec/js/web-audio-peak-meter-2.0.0.min.js',
-  '/rec/css/style.css',
-  '/rec/favicon.ico',
-  '/rec/icons/icon-152.png',
-  '/rec/icons/icon-512.png',
+  '/syncrec/',
+  '/syncrec/index.html',
+  '/syncrec/js/app.js',
+  '/syncrec/js/recorder.js',
+  '/syncrec/js/web-audio-peak-meter-2.0.0.min.js',
+  '/syncrec/css/style.css',
+  '/syncrec/favicon.ico',
+  '/syncrec/icons/icon-152.png',
+  '/syncrec/icons/icon-512.png',
 ];
 
 const contentToCache = appShellFiles;
