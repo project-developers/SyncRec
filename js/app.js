@@ -1,10 +1,10 @@
  //Registering Service Worker
-if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('/syncrec/sw.js');
-}
+//if ('serviceWorker' in navigator) {
+  //navigator.serviceWorker.register('/rec/sw.js');
+//}
 
 
-if(navigator.permissions) {
+/*
 
 navigator.permissions.query({name:'microphone'}).then(function(result) {
   if (result.state == 'granted') {
@@ -18,9 +18,7 @@ navigator.permissions.query({name:'microphone'}).then(function(result) {
 
   };
 });
-}
-
-
+*/
 var clearAll = document.getElementById('clearAll');
 var myMeterElement = document.getElementById('my-peak-meter');
 var unloadButton = document.getElementById('unload');
@@ -46,15 +44,24 @@ removeReference();
 };
 
 function removeReference(){
-	
+
+//clearAll = "a";
+//document.getElementById('recordingsList').innerHTML="";
+
 var player = document.getElementById('movie');
 
+//player.remove();
 player.removeAttribute('src'); // empty source
 player.load();
+//document.getElementById('show').innerHTML= "";
+//document.getElementById('referenceList').innerHTML= "";
 document.getElementById('video-upload').value="";
+
+
 };
 
 function play(){
+   //document.getElementById('show').innerHTML='<video id="movie" style="width: 100%;" ></video>';
    var player = document.getElementById('movie');
    player.load();
 
@@ -82,6 +89,11 @@ fileLocation = urlObj;
  // Create an audio elements
 play();
 
+//unloadButton.disable = false;
+
+//clearAll = "b";
+
+
 };
  
 document
@@ -97,6 +109,8 @@ var input;                                             //MediaStreamAudioSourceN
 var meterNode;
 var webAudioPeakMeter; 	                               //webAudioPeakMeter object
 
+var recorder; 						//MediaRecorder object
+var chunks = [];					//Array of chunks of audio data from the browser
 var extension;
 
 // shim for AudioContext when it's not avb. 
@@ -151,6 +165,8 @@ navigator.mediaDevices.getUserMedia(constraints).then(function(stream) {
 		
 		/* use the stream */
 	input = audioContext.createMediaStreamSource(stream);
+	//input.gain.defaultValue = recGain;
+//input.gain.value = recGain;
 	meterNode = webAudioPeakMeter.createMeterNode(input, audioContext);
 	myMeterElement.innerHTML = '';
   webAudioPeakMeter.createMeter(myMeterElement, meterNode, {});
@@ -164,8 +180,12 @@ navigator.mediaDevices.getUserMedia(constraints).then(function(stream) {
 
 function monitor() {
 	if(monitorButton.innerHTML!=="Stop Monitoring"){
+	//stopButton.style.display = "none";
+	//pauseButton.style.display = "none";
 	recordButton.style.display = "none";
+	//recordButton.disabled = true;
 	monitorButton.innerHTML="Stop Monitoring";
+	//set gain
 	recGain = Number(gainSet.value/100);
 	
 	var constraints = {
@@ -180,6 +200,7 @@ function monitor() {
     },
     video: false
 }
+	//gumStream.getAudioTracks()[0].stop();
 	navigator.mediaDevices.getUserMedia(constraints).then(function(stream) {
 	
 audioContext = new AudioContext();
@@ -189,32 +210,44 @@ gumStream = stream;
 	input = audioContext.createMediaStreamSource(stream);
 	meterNode = webAudioPeakMeter.createMeterNode(input, audioContext);
 	
+	//myMeterElement.innerHTML = "";
 	webAudioPeakMeter.createMeter(myMeterElement, meterNode, {});
 	
 	});
-			
+		
+	
 	}else{
 	
-	
-	
+	recordButton.style.display = "block";
 	monitorButton.innerHTML="Monitor";
-	
+	//recordButton.disabled = false;
+	//stop microphone access
 	gumStream.getAudioTracks()[0].stop();
-	//recordButton.style.display = "block";
 
 	myMeterElement.innerHTML = '';
-	recordButton.style.display = "block";
 	}
 	
 }
 
-//add events to those 5 buttons
+//add events to those 2 buttons
 recordButton.addEventListener("click", startRec);
 monitorButton.addEventListener("click", monitor);
 gainSet.addEventListener("change", adjustGain);
 stopButton.addEventListener("click", stopRec);
 pauseButton.addEventListener("click", pauseRec);
-extension="wav";
+
+/*
+// true on chrome, false on firefox
+console.log("audio/webm:"+MediaRecorder.isTypeSupported('audio/webm;codecs=opus'));
+// false on chrome, true on firefox
+console.log("audio/ogg:"+MediaRecorder.isTypeSupported('audio/ogg;codecs=opus'));
+
+if (MediaRecorder.isTypeSupported('audio/webm;codecs=opus')){
+	extension="webm";
+}else if (MediaRecorder.isTypeSupported('audio/ogg;codecs=opus')){
+	extension="ogg";
+}else{*/
+	extension="wav";
 
 function startRec() {
 	console.log("recordButton clicked");
@@ -235,7 +268,7 @@ function startRec() {
     },
     video: false
 }
-
+	
 	/*
     	We're using the standard promise based getUserMedia() 
     	https://developer.mozilla.org/en-US/docs/Web/API/MediaDevices/getUserMedia
@@ -265,10 +298,13 @@ function startRec() {
 			Create the Recorder object and configure to record mono sound (1 channel)
 			Recording 2 channels  will double the file size
 		*/
-		rec = new Recorder(input,{numChannels:1})
+		rec = new MediaRecorder(stream);
 		
+		rec.ondataavailable = function(e) {
+		createDownloadLink(e.data)
+		};
 		//start the recording process
-		rec.record()
+		rec.start();
 		
 	/*
     	Disable the record button until we get a success or fail from getUserMedia() 
@@ -278,15 +314,18 @@ function startRec() {
 	pauseButton.style.display = "block";
 	monitorButton.style.display = "none";
 	recordButton.style.display = "none";
+	
+
 		
 		meterNode = webAudioPeakMeter.createMeterNode(input, audioContext);
+		//myMeterElement.innerHTML = '';
 		webAudioPeakMeter.createMeter(myMeterElement, meterNode, {});
 		dot.style.background = "red";
 
 		console.log("Recording started");
 
 	}).catch(function(err) {
-  	//enable the record button if getUserMedia() fails
+	  	//enable the record button if getUserMedia() fails
 	recordButton.style.display = "block";
 	monitorButton.style.display = "block";
 	stopButton.style.display = "none";
@@ -295,15 +334,15 @@ function startRec() {
 }
 
 function pauseRec(){
-	console.log("pauseButton clicked rec.recording=",rec.recording );
-	if (rec.recording){
+	console.log("pauseButton clicked rec.state=",rec.state );
+	if (rec.state == 'recording'){
 		//pause
-		rec.stop();
+		rec.pause();
 		pauseButton.innerHTML="Resume";
 		dot.style.background = "#000000";
 	}else{
 		//resume
-		rec.record()
+		rec.resume()
 		pauseButton.innerHTML="Pause";
 		dot.style.background = "red";
 
@@ -330,10 +369,9 @@ function stopRec() {
 	myMeterElement.innerHTML = '';
 	dot.style.background = "#000000";
 
-	//create the wav blob and pass it on to createDownloadLink
-	rec.exportWAV(createDownloadLink);
 	if(clearAll.innerHTML==""){clearAll.innerHTML="Clear All";};
 
+	
 }
 
 function createDownloadLink(blob) {
@@ -352,6 +390,7 @@ function createDownloadLink(blob) {
 	au.src = url;
 
 	//save to disk link
+	//if(extension=="webm"){extension="wav"};
 	link.href = url;
 	link.download = filename+"."+extension; //download forces the browser to download the file using the filename
 	link.innerHTML = "Save";
