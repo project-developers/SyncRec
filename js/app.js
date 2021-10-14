@@ -1,7 +1,7 @@
  //Registering Service Worker
-//if ('serviceWorker' in navigator) {
-  //navigator.serviceWorker.register('/rec/sw.js');
-//}
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('/rec/sw.js');
+}
 
 
 /*
